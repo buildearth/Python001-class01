@@ -1,0 +1,48 @@
+掌握基本的 SQL 语句和 pandas 等价的语句:
+
+df = pd.DataFrame(data)
+
+1. SELECT * FROM data;
+从表data中选出所有数据.
+pandas: df
+
+2. SELECT * FROM data LIMIT 10;
+从表中取前十条数据.
+pandas: df.loc[第一行索引值:第十一行索引值]
+        df.iloc[0:10]
+        df.head(10)
+
+3. SELECT id FROM data;  //id 是 data 表的特定一列
+从表中获取id这一列
+pandas:
+    df['id']
+    df.iloc[:,[2]]  # 假设id处于第二列
+
+4. SELECT COUNT(id) FROM data;
+统计id这一列的数量
+pandas:df['id'].count()
+       df['id'].agg('count')
+
+5. SELECT * FROM data WHERE id<1000 AND age>30;
+从表中选取出id<1000并且age>30的所有行
+pandas:df[df['id' < 1000 & 'age' > 30]]
+
+6. SELECT id,COUNT(DISTINCT order_id) FROM table1 GROUP BY id;
+以id分组，DISTINCT过滤order_id中重复的行，
+pandas: df.groupby('id').drop_duplicates(subset = 'order_id')
+
+7. SELECT * FROM table1 t1 INNER JOIN table2 t2 ON t1.id = t2.id;
+table1和table2按id进行拼接
+pandas: pd.merge(df1, df2, on = 'id')
+
+8. SELECT * FROM table1 UNION SELECT * FROM table2;
+纵向拼接
+pd.concat(table1,table2)
+
+9. DELETE FROM table1 WHERE id=10;
+删除'id'==10的行
+pandas:df.drop(df['id'] == 10)
+
+10. ALTER TABLE table1 DROP COLUMN column_name;
+删除指定列：
+pandas:df.drop('column_name', axis = 1)

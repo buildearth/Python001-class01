@@ -1,0 +1,13 @@
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Person</title>
+</head>
+<body>
+{% for p in persons %}
+    <div> id: {{p.id}}<br>
+        first_name:{{p.first_name}}<br>
+        last_name:{{p.last_name}}
+    </div>
+{%endfor%}
+</body>

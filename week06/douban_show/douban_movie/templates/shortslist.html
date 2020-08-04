@@ -1,0 +1,21 @@
+<h1 align="center" style="color:yellowgreen">肖申克的救赎 短评</h1>
+<table border="1" cellspacing="0" bordercolor="#000000" width = "100%">
+    <thead>
+        <tr>
+            <th style="background-color:royalblue">id</th>
+            <th style="background-color:royalblue">评论</th>
+            <th style="background-color:royalblue">星级</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for short in shorts %}
+            {% if short.new_star > 3 %}
+                <tr>
+                    <td width="3%" align="center">{{short.id}}</td>
+                    <td>{{short.short}}</td>
+                    <td width="3%" align="center" style="background-color:red">{{short.new_star}}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
